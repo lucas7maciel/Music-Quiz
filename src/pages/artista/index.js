@@ -1,8 +1,4 @@
-import {Link, useLocation} from 'react-router-dom'
-
 const Artista = () => {
-  const location = useLocation()  //TRANSFORMAR ALBUM EM COMPONENT
-
   return (
     <>
     <div className="container">

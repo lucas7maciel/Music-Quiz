@@ -10,33 +10,23 @@ const Home = () => {
 
   const [message, setMessage] = useState("Enter your username")
 
-  function getStarted(req) {
-    req = JSON.parse(req)
-    req = req["topalbums"]["album"]
+  async function getStarted(nick) {
+    if (nick.length == 0) return setMessage("Empty field")
 
-    let album1 = {name: req[0]["name"], img: req[0]["image"][3]["#text"]}
-    let album2 = {name: req[1]["name"], img: req[1]["image"][3]["#text"]}
-
-    navigate("/quiz", {state: {nome: nick, answer: 1, album1: album1, album2: album2}})
-  }
-
-  //http://www.last.fm/api/auth/?api_key=68bdac7644fbae9b59e73d85d8a39851&cb=http://google.com
-  async function getRequest (nick)  {
-    if (nick === "") return setMessage("Empty field")
-
-    setMessage("Loading...")
+    //check if the user actually exists
+    let res
 
     const apikey = '5c994f20a333e6a28901af6b8cc9929b'
-    const url = `http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=${nick}&api_key=${apikey}&limit=2&format=json`
-    const req = new XMLHttpRequest()
+    const url = `http://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=${nick}&api_key=${apikey}&format=json` 
 
-    req.open("GET", url, false)
-    req.send(null)
+    await fetch(url).
+    then((response) => response.json()).then((data) => res = data)
+    .catch(() => setMessage("Error"))
 
-    if (req.status >= 400) return setMessage("This user does not exist") 
-  
-    getStarted(req.responseText)
-  };
+    if (res["message"]) return setMessage("This user does not exist")
+
+    navigate("/feed", {state: {nick: nick}})
+  }
 
 
   return (
@@ -49,7 +39,7 @@ const Home = () => {
       <p>{message}</p>
     </form>
     <div style={{textAlign: 'center'}}>
-      <button onClick={() => getRequest(nick)}>Get started!</button>
+      <button onClick={() => getStarted(nick)}>Get started!</button>
     </div>
     </div>
     </>

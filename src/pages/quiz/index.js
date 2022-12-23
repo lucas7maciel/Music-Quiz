@@ -3,18 +3,30 @@ import { useState } from 'react'
 import './style.css'
 
 const Quiz = () => {
-  const [message, setMessage] = useState("Choose an album")
-  const location = useLocation()  //TRANSFORMAR ALBUM EM COMPONENT
+  const location = useLocation()
 
-  const nome = location.state.nome
-  const album1 = location.state.album1
-  const album2 = location.state.album2
+  const nick = location.state.nick
+  const apikey = '5c994f20a333e6a28901af6b8cc9929b'
+  const url = `http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=${nick}&api_key=${apikey}&limit=2&format=json`
+
+  const req = new XMLHttpRequest()
+  req.open("GET", url, false)
+  req.send(null)
+
+  const res = req.responseText
+
+  res = JSON.parse(res)
+  res = res["topalbums"]["album"]
+
+  const album1 = {name: res[0]["name"], img: res[0]["image"][3]["#text"]}
+  const album2 = {name: res[1]["name"], img: res[1]["image"][3]["#text"]}
+  const [message, setMessage] = useState("Choose an album")
 
   return (
     <>
     <div className="container">
     <h1>Quiz page</h1>
-    <h2>Your username: {nome}</h2>
+    <h2>Your username: {nick}</h2>
     <div style={{textAlign:'center'}}>
       <h2>Which of these two is your most listened album?</h2>
       <div style={{display: 'flex', alignItems: 'center', width: '50%', margin: 'auto'}}>
