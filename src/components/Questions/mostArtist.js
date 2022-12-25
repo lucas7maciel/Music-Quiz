@@ -1,9 +1,7 @@
-import {useState} from 'react'
+import {apikey} from '../../functions/vars'
 import Artist from '../artist'
 
 const MostArtist = ({nick}) => {
-  const apikey = '5c994f20a333e6a28901af6b8cc9929b'
-
   const url = `http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=${nick}&api_key=${apikey}&format=json`
   const req = new XMLHttpRequest()
   req.open("GET", url, false)

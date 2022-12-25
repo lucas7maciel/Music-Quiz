@@ -1,10 +1,11 @@
-
+import { createRef } from "react"
 const Album = ({res, index}) => {
-  res = res[index]
+  res = res["topalbums"]["album"][index]
 
   const coverUrl = res["image"][3]["#text"]
   const name = res["name"]
   const artist = res["artist"]["name"]
+  const playCount = res["playcount"]
 
   return (
     <>

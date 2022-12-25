@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import {useLocation, Link} from 'react-router-dom'
-import generateQuestion from '../../functions/vars'
+import generateQuestion from '../../functions/getQuestions'
 
 const Feed = () => {
   const location = useLocation()
@@ -10,7 +10,6 @@ const Feed = () => {
   const [nextQuestion, setNextQuestion] = useState(generateQuestion(nick))
 
   const changeQuestion =  () => {
-    console.log("mudou")
     setQuestion(nextQuestion)
     setNextQuestion(generateQuestion(nick))
   }
@@ -18,7 +17,7 @@ const Feed = () => {
   return (
     <>
     <div style={{textalign: 'center'}}>
-      <h1>Pergunta aleatória</h1>
+      <h1 style={{textalign: 'center'}}>Future header</h1>
       {question}
     </div>
     <div style={{textalign: 'center'}}>
