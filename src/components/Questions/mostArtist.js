@@ -1,35 +1,32 @@
-const mostArtist = ({nick}) => {
-  console.log("artista")
+import {useState} from 'react'
+import Artist from '../artist'
+
+const MostArtist = ({nick}) => {
+  const apikey = '5c994f20a333e6a28901af6b8cc9929b'
+
+  const url = `http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=${nick}&api_key=${apikey}&format=json`
+  const req = new XMLHttpRequest()
+  req.open("GET", url, false)
+  req.send(null)
+
+  let res = req.responseText
+
+  res = JSON.parse(res)
+  
+  const artist1 = Artist({res: res, index: 0})
+  const artist2 = Artist({res: res, index: 1})
 
   return (
     <>
     <div className="container">
       <h1>Qual destes é o seu artista mais ouvido?</h1>
       <div style={{display:'flex'}}>
-        <div style={artistStyle}>
-          <img src="https://lastfm.freetls.fastly.net/i/u/300x300/b47929a57fc4a51fd2e4b2569af7899f.png" alt="Nome do artista" style={{height: 250, width: 250}}></img>
-          <h3>Artista</h3>
-        </div>
-        <div style={artistStyle}>
-          <img src="https://lastfm.freetls.fastly.net/i/u/300x300/b47929a57fc4a51fd2e4b2569af7899f.png" alt="Nome do artista"></img>
-          <h3>Artista</h3>
-        </div>
+          {artist1}
+          {artist2}
       </div>
     </div>
     </>
   );
 }
 
-const artistStyle = {
-  textAlign:'center', 
-  flex: 1,
-  cursor: 'pointer',
-  borderradius: '50%'
-}
-
-const linkStyle = {
-  textDecoration: "none",
-  color: 'white',
-};
-
-export default mostArtist
+export default MostArtist

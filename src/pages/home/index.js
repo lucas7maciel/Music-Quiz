@@ -11,7 +11,7 @@ const Home = () => {
   const [message, setMessage] = useState("Enter your username")
 
   async function getStarted(nick) {
-    if (nick.length == 0) return setMessage("Empty field")
+    if (nick.length === 0) return setMessage("Empty field")
 
     //check if the user actually exists
     let res

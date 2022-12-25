@@ -9,12 +9,10 @@ const Feed = () => {
   const [question, setQuestion] = useState(generateQuestion(nick))
   const [nextQuestion, setNextQuestion] = useState(generateQuestion(nick))
 
-  const changeQuestion = () => {
-    console.log("mudando questão")
+  const changeQuestion =  () => {
+    console.log("mudou")
     setQuestion(nextQuestion)
-    console.log("mudou primeira")
     setNextQuestion(generateQuestion(nick))
-    console.log("questão mudada")
   }
 
   return (
@@ -22,7 +20,6 @@ const Feed = () => {
     <div style={{textalign: 'center'}}>
       <h1>Pergunta aleatória</h1>
       {question}
-      {nextQuestion}
     </div>
     <div style={{textalign: 'center'}}>
       <button><Link style={linkStyle} to="/">Back</Link></button>
