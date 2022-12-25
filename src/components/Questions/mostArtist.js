@@ -1,4 +1,6 @@
-const Artista = () => {
+const mostArtist = ({nick}) => {
+  console.log("artista")
+
   return (
     <>
     <div className="container">
@@ -30,4 +32,4 @@ const linkStyle = {
   color: 'white',
 };
 
-export default Artista
+export default mostArtist

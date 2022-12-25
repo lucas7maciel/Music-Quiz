@@ -5,7 +5,7 @@ import './style.css'
 const Home = () => {
   const navigate = useNavigate()
 
-  const [nick, setNick] = useState('')
+  const [nick, setNick] = useState('lucascalcio')
   const handleChange = event => setNick(event.target.value)
 
   const [message, setMessage] = useState("Enter your username")
@@ -23,7 +23,7 @@ const Home = () => {
     then((response) => response.json()).then((data) => res = data)
     .catch(() => setMessage("Error"))
 
-    if (res["message"]) return setMessage("This user does not exist")
+    if (res["message"]) return setMessage(res["message"])
 
     navigate("/feed", {state: {nick: nick}})
   }
