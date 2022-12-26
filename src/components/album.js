@@ -1,4 +1,4 @@
-import { createRef } from "react"
+import { useRef, useState } from "react"
 const Album = ({res, index}) => {
   res = res["topalbums"]["album"][index]
 
@@ -9,16 +9,20 @@ const Album = ({res, index}) => {
 
   return (
     <>
+    <div className="container" style={{margin: 'auto'}}>
       <div style={albumStyle}>
         <img src={coverUrl} alt="cover"></img>
         <h2>{name}</h2>
         <h4>{artist}</h4>
       </div>
+    </div>
+
     </>
   );
 }
 
 const albumStyle = {
+  flex: 1,
   border: "solid",
   backgroundColor: 'gray',
   textAlign:'center', 

@@ -5,6 +5,7 @@ const Song = ({res, index}) => {
   const coverUrl = res["image"][3]["#text"]
   const name = res["name"]
   const artist = res["artist"]["name"]
+  console.log(res)
 
   return (
     <>
@@ -18,6 +19,7 @@ const Song = ({res, index}) => {
 }
 
 const songStyle = {
+  flex: 1,
   textAlign:'center', 
   cursor: 'pointer'
 }

@@ -1,11 +1,10 @@
 
 const Artist = ({res, index}) => {
-  console.log(res)
   res = res["topartists"]["artist"][index]
-  console.log(res)
 
   const coverUrl = res["image"][3]["#text"]
   const name = res["name"]
+  console.log(`Playcount ${name}: ${res["playcount"]}`)
 
   return (
     <>
@@ -18,6 +17,7 @@ const Artist = ({res, index}) => {
 }
 
 const artistStyle = {
+  flex: 1,
   textAlign:'center', 
   cursor: 'pointer'
 }

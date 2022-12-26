@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import {useLocation, Link} from 'react-router-dom'
 import generateQuestion from '../../functions/getQuestions'
+import NavBar from '../../components/navbar'
 
 const Feed = () => {
   const location = useLocation()
@@ -16,21 +17,12 @@ const Feed = () => {
 
   return (
     <>
-    <div style={{textalign: 'center'}}>
-      <h1 style={{textalign: 'center'}}>Future header</h1>
+    <div className='header' style={{marginBottom: '50px'}}>
+      <NavBar />
+    </div>
       {question}
-    </div>
-    <div style={{textalign: 'center'}}>
-      <button><Link style={linkStyle} to="/">Back</Link></button>
-      <button onClick={changeQuestion}>Mudar questão</button>
-    </div>
     </>
   )
 }
-
-const linkStyle = {
-  textDecoration: "none",
-  color: 'white',
-};
 
 export default Feed

@@ -14,7 +14,7 @@ const generateQuestion = (nick) => {
   const index = Math.floor(Math.random() * lista.length)
   const question = lista[index]
 
-  return questions["mostAlbum"]({nick: nick})
+  return questions["mostSong"]({nick: nick})
 }
 
 export default generateQuestion

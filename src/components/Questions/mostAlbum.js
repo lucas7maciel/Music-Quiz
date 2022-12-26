@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom'
 import { useState } from 'react'
 
 import {apikey} from '../../functions/vars'
-import { albumIndexes } from '../../functions/getIndexes'
+import { getIndexes } from '../../functions/functions'
 import Album from '../album'
 
 const MostAlbum = ({nick}) => {
@@ -14,42 +14,35 @@ const MostAlbum = ({nick}) => {
   let res = req.responseText
   res = JSON.parse(res)
 
-  const indexes = albumIndexes(res)
+  const indexes = getIndexes(res, "album")
 
   const album1 = Album({res: res, index: indexes[0]})
   const album2 = Album({res: res, index: indexes[1]})
-
-  console.log(album1)
-  console.log("playcount 1:" + album1["playCount"])
-  console.log("playcount 2:" + album2["playCount"])
-  console.log(Math.max(album1.playCount, album2.playCount))
 
   //const [message, setMessage] = useState("Choose an album")
 
   return (
     <>
-    <div className="container">
-    <h1>Quiz page</h1>
-    <h2>Your username: {nick}</h2>
     <div style={{textAlign:'center'}}>
-      <h2>Which of these two is your most listened album?</h2>
-      <div style={{display: 'flex', alignItems: 'center', width: '50%', margin: 'auto'}}>
+      <h1>Which of these two is your most listened album?</h1>
+      <div style={containerStyle}>
         {album1}
         {album2}
       </div>
       <p></p>
     </div>
-    <div style={{textalign: 'center'}}>
-      <button><Link style={linkStyle} to="/">Back</Link></button>
-    </div>
-    </div>
     </>
   );
 }
 
-const linkStyle = {
-  textDecoration: "none",
-  color: 'white',
-};
+const containerStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'start',
+
+  margin:'auto',
+  width: '55%'
+}
+
 
 export default MostAlbum
