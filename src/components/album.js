@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+
 const Album = ({res, index}) => {
   res = res["topalbums"]["album"][index]
 

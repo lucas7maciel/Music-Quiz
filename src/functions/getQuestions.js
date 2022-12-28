@@ -10,11 +10,11 @@ let questions = {
   mostAlbum: MostAlbum
 }
 
-const generateQuestion = (nick) => {
+const generateQuestion = (components) => {
   const index = Math.floor(Math.random() * lista.length)
   const question = lista[index]
 
-  return questions["mostSong"]({nick: nick})
+  return questions["mostSong"]({components: components})
 }
 
 export default generateQuestion

@@ -1,3 +1,5 @@
+import { apikey } from "../functions/vars"
+import { useState } from "react"
 
 const Song = ({res, index}) => {
   res = res["toptracks"]["track"][index]
@@ -5,7 +7,6 @@ const Song = ({res, index}) => {
   const coverUrl = res["image"][3]["#text"]
   const name = res["name"]
   const artist = res["artist"]["name"]
-  console.log(res)
 
   return (
     <>

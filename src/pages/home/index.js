@@ -38,7 +38,7 @@ const Home = () => {
       <p>{message}</p>
     </form>
     <div style={{textAlign: 'center'}}>
-      <button onClick={() => getStarted(nick)}>Get started!</button>
+      <button style={{cursor: 'pointer'}} onClick={() => getStarted(nick)}>Get started!</button>
     </div>
     </div>
     </>

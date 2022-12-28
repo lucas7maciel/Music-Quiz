@@ -2,19 +2,9 @@ import {apikey} from '../../functions/vars'
 import { getIndexes } from '../../functions/functions'
 import Artist from '../artist'
 
-const MostArtist = ({nick}) => {
-  const url = `http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=${nick}&api_key=${apikey}&format=json`
-  const req = new XMLHttpRequest()
-  req.open("GET", url, false)
-  req.send(null)
-
-  let res = req.responseText
-  res = JSON.parse(res)
-
-  const indexes = getIndexes(res, "artist")
-
-  const artist1 = Artist({res: res, index: indexes[0]})
-  const artist2 = Artist({res: res, index: indexes[1]})
+const MostArtist = ({components}) => {
+  const artist1 = components[0]
+  const artist2 = components[1]
 
   return (
     <>
