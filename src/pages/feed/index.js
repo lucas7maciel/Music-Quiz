@@ -1,7 +1,6 @@
 import {useState} from 'react'
 import {useLocation, Link} from 'react-router-dom'
-import generateQuestion from '../../functions/getQuestions'
-import getSongs from '../../functions/fetchData'
+import getQuestion from '../../functions/getQuestion'
 import NavBar from '../../components/navbar'
 
 const Feed = () => {
@@ -11,8 +10,8 @@ const Feed = () => {
   const [question, setQuestion] = useState(<h1>Loading</h1>)
 
   const changeQuestion = async () => {
-    const data = await getSongs(nick)
-    setQuestion(generateQuestion(data))
+    const newQuestion = await getQuestion(nick)
+    setQuestion(newQuestion)
   }
 
   return (
