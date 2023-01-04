@@ -5,6 +5,7 @@ const Artist = ({res, index}) => {
   const coverUrl = res["image"][3]["#text"]
   const name = res["name"]
   console.log(`Playcount ${name}: ${res["playcount"]}`)
+  console.log(JSON.stringify(res))
 
   return (
     <>

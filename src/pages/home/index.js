@@ -1,6 +1,7 @@
 import {useNavigate} from 'react-router-dom'
 import { useState } from 'react'
 import { apikey } from '../../functions/vars'
+import TestCard from '../../components/testCard'
 import './style.css'
 
 const Home = () => {
@@ -27,9 +28,9 @@ const Home = () => {
     navigate("/feed", {state: {nick: nick}})
   }
 
-
   return (
     <>
+    <TestCard />
     <div className="container">
     <h1>Music Quiz</h1>
     <h2>Quiz based on your musical taste using Last.fm api</h2>

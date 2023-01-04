@@ -1,10 +1,6 @@
 import {Link} from 'react-router-dom'
 import { useState } from 'react'
 
-import {apikey} from '../../functions/vars'
-import { getIndexes } from '../../functions/functions'
-import Album from '../album'
-
 const MostAlbum = ({components}) => {
   console.log(components[0])
   const album1 = components[0]

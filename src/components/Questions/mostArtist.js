@@ -1,6 +1,3 @@
-import {apikey} from '../../functions/vars'
-import { getIndexes } from '../../functions/functions'
-import Artist from '../artist'
 
 const MostArtist = ({components}) => {
   const artist1 = components[0]

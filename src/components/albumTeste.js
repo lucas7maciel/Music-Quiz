@@ -1,7 +1,10 @@
+import './albumTeste.css'
+import './testCard.css'
 
 const Album = ({res, index}) => {
+  console.log("Res:")
+  console.log(res)
   res = res["topalbums"]["album"][index]
-  console.log(JSON.stringify(res))
 
   const coverUrl = res["image"][3]["#text"]
   const name = res["name"]
@@ -10,11 +13,14 @@ const Album = ({res, index}) => {
 
   return (
     <>
-    <div className="container" style={{margin: 'auto'}}>
-      <div style={albumStyle}>
-        <img src={coverUrl} alt="cover"></img>
-        <h2>{name}</h2>
-        <h4>{artist}</h4>
+    <div className="album">
+      <div className="front">
+          <img src={coverUrl} alt="cover"></img>
+          <h2>{name}</h2>
+          <h4>{artist}</h4>
+      </div>
+      <div className="back">
+        <h2>Lado de tras</h2>
       </div>
     </div>
 

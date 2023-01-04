@@ -22,7 +22,7 @@ const getComponents = async (nick, type) => {
   await fetch(url)
   .then((response) => response.json())
   .then((data) => res = data);
-
+  console.log(res)
   const indexes = getIndexes(res, type)
   const Component = components[type]
 

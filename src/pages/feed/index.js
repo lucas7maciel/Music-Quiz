@@ -7,7 +7,7 @@ const Feed = () => {
   const location = useLocation()
   const nick = location.state.nick
 
-  const [question, setQuestion] = useState(<h1>Loading</h1>)
+  const [question, setQuestion] = useState(<h1 style={{textAlign: 'center'}}>Loading</h1>)
 
   const changeQuestion = async () => {
     const newQuestion = await getQuestion(nick)
