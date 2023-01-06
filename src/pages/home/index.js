@@ -30,7 +30,6 @@ const Home = () => {
 
   return (
     <>
-    <TestCard />
     <div className="container">
     <h1>Music Quiz</h1>
     <h2>Quiz based on your musical taste using Last.fm api</h2>
@@ -41,6 +40,7 @@ const Home = () => {
     <div style={{textAlign: 'center'}}>
       <button style={{cursor: 'pointer'}} onClick={() => getStarted(nick)}>Get started!</button>
     </div>
+    <TestCard />
     </div>
     </>
   );
