@@ -5,16 +5,12 @@ import getComponents from "./getComponents"
 
 const questions = ["mostArtist", "mostSong", "mostAlbum"]
 
-let questionComps = {
-  mostArtist: MostArtist,
-  mostSong: MostSong,
-  mostAlbum: MostAlbum
-}
+let questionComps = [MostArtist, MostSong, MostAlbum]
 
 const getQuestion = async (nick) => {
   //chooses the question type
   const index = Math.floor(Math.random() * questions.length)
-  const question = questions[index]
+  const question = questions[2]
 
   //collects the necessary data for this type
   const components = await getComponents(nick, question)

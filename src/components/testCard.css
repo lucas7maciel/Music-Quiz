@@ -1,11 +1,15 @@
 
 .card {
+  margin-left: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateY(var(--rotate-y, 0));
+  transition: 550ms;
   height: 150px;
-  width: 75px;
+  width: 110px;
 }
 
 .front, .back {
@@ -14,6 +18,15 @@
   backface-visibility: hidden;
 }
 
+.front {
+  background-color: aqua;
+}
+
 .back {
-  transform: rotateX(180deg);
+  background-color: red;
+  transform: rotateY(180deg);
+}
+
+.flip {
+    --rotate-y: 180deg;
 }

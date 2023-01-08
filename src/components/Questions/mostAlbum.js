@@ -2,11 +2,8 @@ import {Link} from 'react-router-dom'
 import { useState } from 'react'
 
 const MostAlbum = ({components}) => {
-  console.log(components[0])
   const album1 = components[0]
   const album2 = components[1]
-
-  //const [message, setMessage] = useState("Choose an album")
 
   return (
     <>

@@ -37,10 +37,10 @@ const Home = () => {
       <input type="text" value={nick} onChange={handleChange}></input>
       <p>{message}</p>
     </form>
-    <div style={{textAlign: 'center'}}>
+    <div style={{textAlign: 'center', margin: '0 auto'}}>
       <button style={{cursor: 'pointer'}} onClick={() => getStarted(nick)}>Get started!</button>
+      <TestCard />
     </div>
-    <TestCard />
     </div>
     </>
   );

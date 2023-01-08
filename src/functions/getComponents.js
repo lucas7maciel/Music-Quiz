@@ -25,9 +25,11 @@ const getComponents = async (nick, type) => {
   console.log(res)
   const indexes = getIndexes(res, type)
   const Component = components[type]
-
-  const component1 = Component({res: res, index: indexes[0]})
-  const component2 = Component({res: res, index: indexes[1]})
+  
+  const component1 = <Component res={res} index={indexes[0]} />
+  const component2 = <Component res={res} index={indexes[1]} />
+  //const component1 = Component({res: res, index: indexes[0]})
+  //const component2 = Component({res: res, index: indexes[1]})
 
   return [component1, component2]
 }
