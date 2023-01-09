@@ -4,7 +4,6 @@ class Album extends Component {
   constructor(props) {
     super(props)
     console.log("Construtor de album rodou")
-    this.state = {flip: false}
 
     this.res = this.props.res["topalbums"]["album"][this.props.index]
 

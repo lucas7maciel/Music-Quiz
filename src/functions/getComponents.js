@@ -4,40 +4,36 @@ import Artist from '../components/artist'
 import Song from '../components/song'
 
 const methods = {
-  mostAlbum: "user.gettopalbums",
-  mostArtist: "user.gettopartists",
-  mostSong: "user.gettoptracks"
+  Album: "user.gettopalbums",
+  Artist: "user.gettopartists",
+  Song: "user.gettoptracks"
 }
 
 const components = {
-  mostAlbum: Album,
-  mostArtist: Artist,
-  mostSong: Song
+  Album: Album,
+  Artist: Artist,
+  Song: Song
 }
 
 const getComponents = async (nick, type) => {
   const url = `http://ws.audioscrobbler.com/2.0/?method=${methods[type]}&user=${nick}&api_key=${apikey}&format=json`
   let res
 
-  await fetch(url)
-  .then((response) => response.json())
-  .then((data) => res = data);
-  console.log(res)
+  await fetch(url).then((response) => response.json()).then((data) => res = data);
+
   const indexes = getIndexes(res, type)
   const Component = components[type]
-  
-  const component1 = <Component res={res} index={indexes[0]} />
-  const component2 = <Component res={res} index={indexes[1]} />
-  //const component1 = Component({res: res, index: indexes[0]})
-  //const component2 = Component({res: res, index: indexes[1]})
+
+  const component1 = new Component({res: res, index:indexes[0]})
+  const component2 = new Component({res: res, index:indexes[1]})
 
   return [component1, component2]
 }
 
 const getIndexes = (res, type) => {
-  if (type === "mostAlbum") res = res["topalbums"]["album"]
-  else if (type === "mostArtist") res = res["topartists"]["artist"]
-  else if (type === "mostSong") res = res["toptracks"]["track"]
+  if (type === "Album") res = res["topalbums"]["album"]
+  else if (type === "Artist") res = res["topartists"]["artist"]
+  else if (type === "Song") res = res["toptracks"]["track"]
 
   const index1 = Math.floor(Math.random() * res.length)
 

@@ -1,24 +1,19 @@
-import MostArtist from "../components/Questions/mostArtist"
-import MostAlbum from "../components/Questions/mostAlbum"
-import MostSong from "../components/Questions/mostSong"
 import getComponents from "./getComponents"
 
-const questions = ["mostArtist", "mostSong", "mostAlbum"]
+const questions = [{text: "Teste artista", type: "Artist"}, {text: "Teste song", type: "Song"}, {text: "Teste album", type: "Album"}]
 
-let questionComps = [MostArtist, MostSong, MostAlbum]
-
-const getQuestion = async (nick) => {
-  //chooses the question type
+const getQuestionData = async (nick) => {
   const index = Math.floor(Math.random() * questions.length)
   const question = questions[2]
 
-  //collects the necessary data for this type
-  const components = await getComponents(nick, question)
+  const components = await getComponents(nick, question["type"])
 
-  //passes the data (albums, artists, etc) to the question component
-  console.log("Componentes")
-  console.log(components)
-  return questionComps[question]({components: components})
+  const data = {
+    "question": question["text"],
+    "components": components
+  }
+
+  return data
 }
 
-export default getQuestion
+export default getQuestionData
