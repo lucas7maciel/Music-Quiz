@@ -9,8 +9,9 @@ const getQuestionData = async (nick) => {
   const components = await getComponents(nick, question["type"])
 
   const data = {
-    "question": question["text"],
-    "components": components
+    "question": components[0].props.index,//question["text"],
+    "component1": components[0],
+    "component2": components[1]
   }
 
   return data

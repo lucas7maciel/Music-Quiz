@@ -1,19 +1,14 @@
 import {Component} from 'react'
+import Flippable from './flippable'
 
 class Question extends Component {
-  constructor(props) {
-    super(props)
-
-    this.data = this.props.data
-  }
-
   render() {
     return (
       <div style={{textAlign:'center'}} onClick={this.props.changeFunc}>
         <h1>{this.props.data.question}</h1>
         <div style={containerStyle}>
-          {this.props.data.component1}
-          {this.props.data.component2}
+          <Flippable data={this.props.component1} key={1} />
+          <Flippable data={this.props.component2} key={2} />
         </div>
       </div>
     )

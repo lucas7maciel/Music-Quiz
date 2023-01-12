@@ -3,10 +3,10 @@ import {Component} from 'react'
 class Album extends Component {
   constructor(props) {
     super(props)
-    console.log("Construtor de album rodou")
+    console.log("Construtor de album rodou, props:")
+    console.log(this.props)
 
     this.res = this.props.res["topalbums"]["album"][this.props.index]
-
     this.coverUrl = this.res["image"][3]["#text"]
     this.name = this.res["name"]
     this.artist = this.res["artist"]["name"]

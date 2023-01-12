@@ -17,7 +17,6 @@ const Feed = () => {
   const [questionData, setQuestionData] = useState(data)
 
   const changeQuestion = async () => {
-    console.log("Vai mudar")
     const newQuestion = await getQuestionData(nick)
     setQuestionData(newQuestion)
   }
