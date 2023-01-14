@@ -11,7 +11,8 @@ const Feed = () => {
 
   const data = {
     "question": "Qual o tamanho do seu penis",
-    "components": [<h1>Componente 1</h1>, <h1>Componente 2</h1>]
+    "component1": <h1>Componente 1</h1>,
+    "component2": <h1>Componente 2</h1>
   }
 
   const [questionData, setQuestionData] = useState(data)
@@ -30,8 +31,5 @@ const Feed = () => {
     </>
   )
 }
-
-/*{question}
-  <div style={{margin: 'auto', textAlign: 'center'}}><button style={{cursor: 'pointer'}} onClick={changeQuestion}>Change question</button></div>*/
 
 export default Feed

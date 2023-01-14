@@ -1,5 +1,5 @@
 import { Component } from "react"
-import "./testCard.css"
+import "./flippable"
 
 class TestCard extends Component {
   constructor() {

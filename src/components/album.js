@@ -1,21 +1,18 @@
-import {Component} from 'react'
+import {Component, useRef} from 'react'
 
 class Album extends Component {
   constructor(props) {
     super(props)
-    console.log("Construtor de album rodou, props:")
-    console.log(this.props)
 
     this.res = this.props.res["topalbums"]["album"][this.props.index]
     this.coverUrl = this.res["image"][3]["#text"]
     this.name = this.res["name"]
     this.artist = this.res["artist"]["name"]
-    this.playCount = this.res["playcount"]
   }
 
   render() {
     return (
-    <div className="container" style={{margin: 'auto'}}>
+    <div className="album" style={{margin: 'auto'}} key={this.props.index}>
       <div style={albumStyle}>
         <img src={this.coverUrl} alt="cover"></img>
         <h2>{this.name}</h2>

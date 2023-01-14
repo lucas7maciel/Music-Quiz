@@ -1,15 +1,14 @@
 
-.card {
-  margin-left: 200px;
+.flippable {
+  flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
   position: relative;
   transform-style: preserve-3d;
   transform: perspective(1000px) rotateY(var(--rotate-y, 0));
   transition: 550ms;
-  height: 150px;
-  width: 110px;
+  height: 100px;
+  width: 100px;
 }
 
 .front, .back {
@@ -19,7 +18,6 @@
 }
 
 .front {
-  background-color: aqua;
 }
 
 .back {
