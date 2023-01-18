@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {useLocation, Link} from 'react-router-dom'
+import {useLocation} from 'react-router-dom'
 import getQuestionData from '../../functions/getQuestion'
 import NavBar from '../../components/navbar'
 import Question from '../../components/question'

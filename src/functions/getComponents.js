@@ -10,7 +10,7 @@ const methods = {
 }
 
 const components = {
-  Album: (res, index) => <Album res={res} index={index} />,
+  Album: (res, index) => <Album res={res["topalbums"]["album"][index]} keyValue={index} />,
   Artist: Artist,
   Song: Song
 }
@@ -27,7 +27,7 @@ const getComponents = async (nick, type) => {
 
   const component1 = Component(res, indexes[0])
   const component2 = Component(res, indexes[1])
-  console.log(component1.playCount)
+
   return [component1, component2]
 }
 

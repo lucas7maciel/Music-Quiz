@@ -1,7 +1,6 @@
 import {useNavigate} from 'react-router-dom'
 import { useState } from 'react'
 import { apikey } from '../../functions/vars'
-import TestCard from '../../components/testCard'
 import './style.css'
 
 const Home = () => {
@@ -39,7 +38,6 @@ const Home = () => {
     </form>
     <div style={{textAlign: 'center', margin: '0 auto'}}>
       <button style={{cursor: 'pointer'}} onClick={() => getStarted(nick)}>Get started!</button>
-      <TestCard />
     </div>
     </div>
     </>

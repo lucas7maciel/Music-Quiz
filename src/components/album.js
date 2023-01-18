@@ -1,18 +1,18 @@
-import {Component, useRef} from 'react'
+import {Component} from 'react'
 
 class Album extends Component {
   constructor(props) {
     super(props)
 
-    this.res = this.props.res["topalbums"]["album"][this.props.index]
-    this.coverUrl = this.res["image"][3]["#text"]
-    this.name = this.res["name"]
-    this.artist = this.res["artist"]["name"]
+    //this.res = this.props.res["topalbums"]["album"][this.props.index]
+    this.coverUrl = this.props.res["image"][3]["#text"]
+    this.name = this.props.res["name"]
+    this.artist = this.props.res["artist"]["name"]
   }
 
   render() {
     return (
-    <div className="album" style={{margin: 'auto'}} key={this.props.index}>
+    <div className="album" style={{margin: 'auto'}} key={this.props.keyValue}>
       <div style={albumStyle}>
         <img src={this.coverUrl} alt="cover"></img>
         <h2>{this.name}</h2>
@@ -22,29 +22,6 @@ class Album extends Component {
     )
   }
 }
-
-/*const Album = ({res, index}) => {
-  res = res["topalbums"]["album"][index]
-  const [a, setA] = useState(true)
-
-  const coverUrl = res["image"][3]["#text"]
-  const name = res["name"]
-  const artist = res["artist"]["name"]
-  const playCount = res["playcount"]
-
-  return (
-    <>
-    <div className="container" style={{margin: 'auto'}}>
-      <div style={albumStyle}>
-        <img src={coverUrl} alt="cover"></img>
-        <h2>{name}</h2>
-        <h4>{artist}</h4>
-      </div>
-    </div>
-
-    </>
-  );
-}*/
 
 const albumStyle = {
   flex: 1,
