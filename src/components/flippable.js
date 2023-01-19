@@ -4,15 +4,17 @@ import './flippable.css'
 class Flippable extends Component {
   constructor(props) {
     super(props)
-    this.state = {flipped: false, playCounts: "...", height: 0, width: 0}
+
+    this.state = {flipped: false, playCounts: "...", bgColor: "gray", height: 0, width: 0}
 
     this.frontDiv = createRef()
     this.backDiv = createRef()
   }
-
+  a() {
+    console.log("Funcionou")
+  }
   componentDidMount() {
     //comentar
-    console.log("montou")
     const frontRect = this.frontDiv.current.getBoundingClientRect()
     const backRect = this.backDiv.current.getBoundingClientRect()
 
@@ -22,7 +24,9 @@ class Flippable extends Component {
     const contentData = this.props.data.props.res
     const playCounts = contentData ? contentData["playcount"] : "..."
 
-    this.setState({height: newHeight, width: newWidth, playCounts: playCounts})
+    const newBgColor = bgColors[this.props.data.props.status] || "gray"
+
+    this.setState({height: newHeight, width: newWidth, playCounts: playCounts, bgColor: newBgColor})
   }
 
   render () {
@@ -32,7 +36,7 @@ class Flippable extends Component {
         <div className='front' ref={this.frontDiv}>
           {this.props.data}
         </div>
-        <div className='back' ref={this.backDiv} style={{height: this.state.height, width: this.state.width}}>
+        <div className='back' ref={this.backDiv} style={{height: this.state.height, width: this.state.width, backgroundColor: this.state.bgColor}}>
           <h2>Playcount</h2>
           <h3>{this.state.playCounts}</h3>
         </div>
@@ -40,6 +44,12 @@ class Flippable extends Component {
       </>
     )
   }
+}
+
+const bgColors = {
+  Winner: "green",
+  Loser: "red",
+  Tie: "gray"
 }
 
 export default Flippable

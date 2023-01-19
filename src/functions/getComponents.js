@@ -9,8 +9,14 @@ const methods = {
   Song: "user.gettoptracks"
 }
 
+const paths = {
+  Album: res => res["topalbums"]["album"],
+  Artist: res => res["topartists"]["artist"],
+  Song: res => res["toptracks"]["track"]
+}
+
 const components = {
-  Album: (res, index) => <Album res={res["topalbums"]["album"][index]} keyValue={index} />,
+  Album: (res, index, status) => <Album res={res[index]} status={status} keyValue={index} />,
   Artist: Artist,
   Song: Song
 }
@@ -22,20 +28,19 @@ const getComponents = async (nick, type) => {
 
   await fetch(url).then((response) => response.json()).then((data) => res = data);
 
-  const indexes = getIndexes(res, type)
+  res = paths[type](res)
+  
+  const indexes = getIndexes(res)           //choose two components for the question (albums, artists, songs)
+  const statuses = getStatus(res, indexes)  //check which one has the highest play count
   const Component = components[type]
 
-  const component1 = Component(res, indexes[0])
-  const component2 = Component(res, indexes[1])
+  const component1 = Component(res, indexes[0], statuses[0])
+  const component2 = Component(res, indexes[1], statuses[1])
 
   return [component1, component2]
 }
 
-const getIndexes = (res, type) => {
-  if (type === "Album") res = res["topalbums"]["album"]
-  else if (type === "Artist") res = res["topartists"]["artist"]
-  else if (type === "Song") res = res["toptracks"]["track"]
-
+const getIndexes = (res) => {
   const index1 = Math.floor(Math.random() * res.length)
 
   //comentar isso
@@ -48,6 +53,18 @@ const getIndexes = (res, type) => {
   while (index2 === index1) index2 = Math.floor(Math.random() * (max - min) + min)
 
   return [index1, index2]
+}
+
+const getStatus = (res, indexes) => {
+  const index1 = indexes[0], index2 = indexes[1]
+
+  const playcount1 = parseInt(res[index1]["playcount"])
+  const playcount2 = parseInt(res[index2]["playcount"])
+
+  if (playcount1 === playcount2) return ["Tie", "Tie"]
+
+  return [playcount1 > playcount2 ? "Winner" : "Loser",
+          playcount1 < playcount2 ? "Winner" : "Loser"]
 }
 
 export default getComponents
