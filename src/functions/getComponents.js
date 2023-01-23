@@ -2,6 +2,7 @@ import {apikey} from './vars'
 import Album from '../components/album'
 import Artist from '../components/artist'
 import Song from '../components/song'
+import { createRef } from 'react'
 
 const methods = {
   Album: "user.gettopalbums",
@@ -16,7 +17,7 @@ const paths = {
 }
 
 const components = {
-  Album: (res, index, status) => <Album res={res[index]} status={status} keyValue={index} />,
+  Album: (res, index, status, ref) => <Album res={res[index]} status={status} keyValue={index} ref={ref} />,
   Artist: Artist,
   Song: Song
 }
@@ -34,10 +35,13 @@ const getComponents = async (nick, type) => {
   const statuses = getStatus(res, indexes)  //check which one has the highest play count
   const Component = components[type]
 
-  const component1 = Component(res, indexes[0], statuses[0])
-  const component2 = Component(res, indexes[1], statuses[1])
+  const ref1 = createRef()
+  const ref2 = createRef()
 
-  return [component1, component2]
+  const component1 = Component(res, indexes[0], statuses[0], ref1)
+  const component2 = Component(res, indexes[1], statuses[1], ref2)
+
+  return [component1, component2, ref1, ref2]
 }
 
 const getIndexes = (res) => {

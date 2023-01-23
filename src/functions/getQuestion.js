@@ -11,7 +11,9 @@ const getQuestionData = async (nick) => {
   const data = {
     "question": question["text"],
     "component1": components[0],
-    "component2": components[1]
+    "component2": components[1],
+    "ref1": components[2],
+    "ref2": components[3]
   }
 
   return data

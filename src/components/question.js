@@ -18,8 +18,8 @@ class Question extends Component {
       <div style={{textAlign:'center'}}>
         <h1 onClick={this.props.changeFunc}>{this.props.data.question}</h1>
         <div style={containerStyle}>
-          <Flippable data={this.props.data.component1} ref={this.flip1} key={this.props.data.component1.props ? this.props.data.component1.props.keyValue : 1} />
-          <Flippable data={this.props.data.component2} ref={this.flip2} key={this.props.data.component2.props ? this.props.data.component2.props.keyValue : 2} />
+          <Flippable data={this.props.data.component1} teste={this.props.data.ref1} ref={this.flip1} key={this.props.data.component1.props ? this.props.data.component1.props.keyValue : 1} />
+          <Flippable data={this.props.data.component2} teste={this.props.data.ref2} ref={this.flip2} key={this.props.data.component2.props ? this.props.data.component2.props.keyValue : 2} />
         </div>
       </div>
       </>

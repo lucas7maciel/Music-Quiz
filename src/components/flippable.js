@@ -5,28 +5,42 @@ class Flippable extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {flipped: false, playCounts: "...", bgColor: "gray", height: 0, width: 0}
+    this.state = {flipped: false, playCounts: "...", bgColor: "gray", height: 0, width: 0, rightSize: false}
 
     this.frontDiv = createRef()
     this.backDiv = createRef()
   }
-  a() {
-    console.log("Funcionou")
-  }
-  componentDidMount() {
-    //comentar
-    const frontRect = this.frontDiv.current.getBoundingClientRect()
-    const backRect = this.backDiv.current.getBoundingClientRect()
 
-    const newHeight = Math.max(frontRect.height, backRect.height)
-    const newWidth = Math.max(frontRect.width, backRect.width)
-    
+  componentDidMount() {
     const contentData = this.props.data.props.res
     const playCounts = contentData ? contentData["playcount"] : "..."
 
     const newBgColor = bgColors[this.props.data.props.status] || "gray"
 
-    this.setState({height: newHeight, width: newWidth, playCounts: playCounts, bgColor: newBgColor})
+    this.setState({playCounts: playCounts, bgColor: newBgColor})
+  }
+
+  componentDidUpdate() {
+    if (!this.props.teste) {
+      return
+    }
+
+    const current = this.props.teste.current
+    
+    if (current.state["imgLoaded"] && !this.state.rightSize) {
+      this.updateSize()
+    }
+
+  }
+
+  updateSize() {
+    const frontRect = this.frontDiv.current.getBoundingClientRect()
+    const backRect = this.backDiv.current.getBoundingClientRect()
+
+    const newHeight = Math.max(frontRect.height, backRect.height)
+    const newWidth = Math.max(frontRect.width, backRect.width)
+
+    this.setState({height: newHeight, width: newWidth, rightSize: true})
   }
 
   render () {
