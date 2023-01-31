@@ -21,8 +21,10 @@ class Flippable extends Component {
   }
 
   componentDidUpdate() {
-    if (!this.props.teste) {
-      return
+    if (!this.props.teste) return
+
+    if (this.state.flipped) {
+      this.props.flipTrigger()
     }
 
     const current = this.props.teste.current
@@ -43,10 +45,14 @@ class Flippable extends Component {
     this.setState({height: newHeight, width: newWidth, rightSize: true})
   }
 
+  flip() {
+    this.setState({flipped: !this.state.flipped})
+  }
+
   render () {
     return (
       <>
-      <div className={`flippable ${this.state.flipped ? "flip" : ""}`} onClick={() => this.setState({flipped: !this.state.flipped})}>
+      <div className={`flippable ${this.state.flipped ? "flip" : ""}`} onClick={() => this.flip()}>
         <div className='front' ref={this.frontDiv}>
           {this.props.data}
         </div>
