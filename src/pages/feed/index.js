@@ -2,6 +2,7 @@ import {useState} from 'react'
 import {useLocation} from 'react-router-dom'
 import getQuestionData from '../../functions/getQuestion'
 import NavBar from '../../components/navbar'
+import PopUp from '../../components/popUp'
 import Question from '../../components/question'
 
 
@@ -27,6 +28,7 @@ const Feed = () => {
     <div className='header' style={{marginBottom: '50px'}}>
       <NavBar />
     </div>
+    <PopUp text="Teste" />
     <Question data={questionData} changeFunc={changeQuestion} />
     </>
   )

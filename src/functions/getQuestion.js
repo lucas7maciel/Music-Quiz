@@ -1,6 +1,5 @@
 import getComponents from "./getComponents"
-
-const questions = [{text: "Teste artista", type: "Artist"}, {text: "Teste song", type: "Song"}, {text: "Which of these is your most listened to album?", type: "Album"}]
+import {questions} from "./vars"
 
 const getQuestionData = async (nick) => {
   const index = Math.floor(Math.random() * questions.length)

@@ -12,10 +12,9 @@ class Question extends Component {
   }
 
   async flipOther() {
-
     [this.flip1, this.flip2].forEach((ref) => {
       if (!ref.current.state.flipped) {
-        setTimeout(() => ref.current.flip(), 1000);
+        setTimeout(() => ref.current.flip(), 600);
       }
     })
   }

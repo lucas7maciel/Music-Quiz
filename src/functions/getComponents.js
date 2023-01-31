@@ -1,39 +1,20 @@
-import {apikey} from './vars'
-import Album from '../components/album'
-import Artist from '../components/artist'
-import Song from '../components/song'
+import {apikey, helper} from './vars'
 import { createRef } from 'react'
 
-const methods = {
-  Album: "user.gettopalbums",
-  Artist: "user.gettopartists",
-  Song: "user.gettoptracks"
-}
-
-const paths = {
-  Album: res => res["topalbums"]["album"],
-  Artist: res => res["topartists"]["artist"],
-  Song: res => res["toptracks"]["track"]
-}
-
-const components = {
-  Album: (res, index, status, ref) => <Album res={res[index]} status={status} keyValue={index} ref={ref} />,
-  Artist: Artist,
-  Song: Song
-}
-
-
 const getComponents = async (nick, type) => {
-  const url = `http://ws.audioscrobbler.com/2.0/?method=${methods[type]}&user=${nick}&api_key=${apikey}&format=json`
+  const data = helper[type]
+  console.log(helper)
+  console.log(data)
+  const url = `http://ws.audioscrobbler.com/2.0/?method=${data["method"]}&user=${nick}&api_key=${apikey}&format=json`
   let res
 
   await fetch(url).then((response) => response.json()).then((data) => res = data);
 
-  res = paths[type](res)
+  res = data["path"](res)
   
   const indexes = getIndexes(res)           //choose two components for the question (albums, artists, songs)
   const statuses = getStatus(res, indexes)  //check which one has the highest play count
-  const Component = components[type]
+  const Component = data["component"]
 
   const ref1 = createRef()
   const ref2 = createRef()

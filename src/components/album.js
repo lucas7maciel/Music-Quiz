@@ -11,8 +11,6 @@ class Album extends Component {
     this.state = {imgLoaded: false}
   }
 
-  teste() {console.log("teste funcionou")}
-
   render() {
     return (
     <div className="album" style={{margin: 'auto'}} key={this.props.keyValue}>

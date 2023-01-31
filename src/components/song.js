@@ -1,22 +1,25 @@
-import { apikey } from "../functions/vars"
-import { useState } from "react"
+import {Component} from 'react'
 
-const Song = ({res, index}) => {
-  res = res["toptracks"]["track"][index]
+class Song extends Component {
+  constructor(props) {
+    super(props)
+    console.log(this.props.res)
+    this.coverUrl = this.props.res["image"][3]["#text"]
+    this.name = this.props.res["name"]
+    this.artist = this.props.res["artist"]["name"]
 
-  const coverUrl = res["image"][3]["#text"]
-  const name = res["name"]
-  const artist = res["artist"]["name"]
+    this.state = {imgLoaded: false}
+  }
 
-  return (
-    <>
+  render() {
+    return (
       <div style={songStyle}>
-        <img src={coverUrl} alt="cover"></img>
-        <h2>{name}</h2>
-        <h3>{artist}</h3>
+        <img src={this.coverUrl} onLoad={() => this.setState({imgLoaded: true})} alt="cover"></img>
+        <h2>{this.name}</h2>
+        <h3>{this.artist}</h3>
       </div>
-    </>
-  );
+    )
+  }
 }
 
 const songStyle = {
