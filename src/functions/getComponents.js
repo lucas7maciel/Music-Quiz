@@ -3,8 +3,6 @@ import { createRef } from 'react'
 
 const getComponents = async (nick, type) => {
   const data = helper[type]
-  console.log(helper)
-  console.log(data)
   const url = `http://ws.audioscrobbler.com/2.0/?method=${data["method"]}&user=${nick}&api_key=${apikey}&format=json`
   let res
 

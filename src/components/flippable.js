@@ -5,32 +5,40 @@ class Flippable extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {flipped: false, playCounts: "...", bgColor: "gray", height: 0, width: 0, rightSize: false}
+    this.state = {
+      flipped: false, 
+      playCounts: "...", 
+      bgColor: "gray", 
+      height: 0, 
+      width: 0, 
+      rightSize: false,
+      first: true
+    }
 
     this.frontDiv = createRef()
     this.backDiv = createRef()
   }
 
   componentDidMount() {
-    const contentData = this.props.data.props.res
-    const playCounts = contentData ? contentData["playcount"] : "..."
-
-    const newBgColor = bgColors[this.props.data.props.status] || "gray"
-
-    this.setState({playCounts: playCounts, bgColor: newBgColor})
+    if (this.props.Component) this.updateInfo()
   }
 
   componentDidUpdate() {
-    if (!this.props.teste) return
+    if (!this.props.compRef) return
 
     if (this.state.flipped) {
       this.props.flipTrigger()
     }
 
-    const current = this.props.teste.current
+    const current = this.props.compRef.current
     
     if (current.state["imgLoaded"] && !this.state.rightSize) {
       this.updateSize()
+    }
+
+    if (this.state.first) {
+      this.updateInfo()
+      this.setState({first: false})
     }
 
   }
@@ -45,6 +53,18 @@ class Flippable extends Component {
     this.setState({height: newHeight, width: newWidth, rightSize: true})
   }
 
+  updateInfo() {
+    const contentData = this.props.component.props
+  
+    const playCounts= contentData.res["playcount"]
+    const newBgColor = bgColors[contentData.status]
+
+    this.setState({
+      playCounts: playCounts || "...",
+      bgColor: newBgColor || "gray"
+    })
+  }
+
   flip() {
     this.setState({flipped: !this.state.flipped})
   }
@@ -54,7 +74,7 @@ class Flippable extends Component {
       <>
       <div className={`flippable ${this.state.flipped ? "flip" : ""}`} onClick={() => this.flip()}>
         <div className='front' ref={this.frontDiv}>
-          {this.props.data}
+          {this.props.component}
         </div>
         <div className='back' ref={this.backDiv} style={{height: this.state.height, width: this.state.width, backgroundColor: this.state.bgColor}}>
           <h2>Playcount</h2>
