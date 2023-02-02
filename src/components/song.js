@@ -1,10 +1,10 @@
 import {Component} from 'react'
-import {apikey} from '../functions/vars'
+import {lastfmKey} from '../functions/vars'
 
 class Song extends Component {
   constructor(props) {
     super(props)
-    //console.log(this.props.res)
+
     this.coverUrl = this.props.res["image"][3]["#text"]
     this.name = this.props.res["name"]
     this.artist = this.props.res["artist"]["name"]
@@ -20,18 +20,20 @@ class Song extends Component {
 
   async updateImage() {
     const data = this.props.res
-    let newImage, a
+    let newImage
 
     const artist = data["artist"]["name"].replaceAll(" ", "+")
     const track = data["name"].replaceAll(" ", "+")
 
-    const url = `http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${apikey}&artist=${artist}&track=${track}&format=json`
-    console.log(url)
-    await fetch(url).then((res) => res.json()).
-    then((res) => {console.log(res);newImage = res["track"]["album"]["image"][3]["#text"]; a=res});
+    const url = `http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${lastfmKey}&artist=${artist}&track=${track}&format=json`
 
+    await fetch(url).then((res) => res.json()).
+    then((res) => {
+      newImage = res["track"]["album"]["image"][3]["#text"]; 
+    });
+
+    this.setState({rightImage: true})
     this.coverUrl = newImage
-    this.setState({rightImage: true, imgLoaded: false})
   }
 
   render() {
@@ -47,7 +49,9 @@ class Song extends Component {
 
 const songStyle = {
   flex: 1,
-  textAlign:'center', 
+  textAlign:'center',
+  border: "solid",
+  backgroundColor: 'gray',
   cursor: 'pointer'
 }
 

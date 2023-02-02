@@ -2,7 +2,8 @@ import Album from '../components/album'
 import Artist from '../components/artist'
 import Song from '../components/song'
 
-export const apikey = '5c994f20a333e6a28901af6b8cc9929b'
+export const lastfmKey = '5c994f20a333e6a28901af6b8cc9929b'
+export const onemusicKey = '497983582dcd831aa0b7ae91b4edff94'
 
 //Used in getQuestion()
 export const questions =

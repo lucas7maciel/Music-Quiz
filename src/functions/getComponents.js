@@ -1,9 +1,9 @@
-import {apikey, helper} from './vars'
+import {lastfmKey, helper} from './vars'
 import { createRef } from 'react'
 
 const getComponents = async (nick, type) => {
   const data = helper[type]
-  const url = `http://ws.audioscrobbler.com/2.0/?method=${data["method"]}&user=${nick}&api_key=${apikey}&format=json`
+  const url = `http://ws.audioscrobbler.com/2.0/?method=${data["method"]}&user=${nick}&api_key=${lastfmKey}&format=json`
   let res
 
   await fetch(url).then((response) => response.json()).then((data) => res = data);

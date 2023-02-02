@@ -1,6 +1,6 @@
 import {useNavigate} from 'react-router-dom'
 import { useState } from 'react'
-import { apikey } from '../../functions/vars'
+import { lastfmKey } from '../../functions/vars'
 import './style.css'
 
 const Home = () => {
@@ -15,7 +15,7 @@ const Home = () => {
     if (nick.length === 0) return setMessage("Empty field")
 
     //check if the user actually exists
-    const url = `http://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=${nick}&api_key=${apikey}&format=json` 
+    const url = `http://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=${nick}&api_key=${lastfmKey}&format=json` 
     let res
 
     await fetch(url)

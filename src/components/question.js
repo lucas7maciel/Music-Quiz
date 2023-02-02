@@ -29,15 +29,14 @@ class Question extends Component {
   }
 
   componentDidMount() {
-    if (!this.state.first) return
+    if (!this.state.first || !this.props.nick) return
 
-    this.changeQuestion()
+    this.changeQuestion(this.props.nick)
     this.setState({first: false})
-    
   }
 
-  async changeQuestion() {
-    const newQuestion = await getQuestionData(this.props.nick)
+  async changeQuestion(nick) {
+    const newQuestion = await getQuestionData(nick)
     
     this.setState({
       question: newQuestion.question,
@@ -54,10 +53,9 @@ class Question extends Component {
 
   flipOther() {
     [this.flip1, this.flip2].forEach(async (ref) => {
-      console.log("Analizando ", ref.current.props.component.props.res.name, ref.current.state.flipped)
       if (!ref.current.state.flipped) {
         await setTimeout(() => ref.current.flip(), 600)
-
+        await setTimeout(() => this.popUp.current.open(), 700)
         //this.popUp.current.open()
       }
     })
@@ -66,7 +64,6 @@ class Question extends Component {
   render() {
     return (
       <>
-      <PopUp text="Click anywhere to continue" closeFunc={this.change} ref={this.popUp} />
       <div style={{textAlign:'center'}}>
         <h1 onClick={() => this.changeQuestion()}>{this.state.question}</h1>
         <div style={containerStyle}>
@@ -85,6 +82,7 @@ class Question extends Component {
           ref={this.flip2} 
           key={this.state.key2 || 52} />
         </div>
+        <PopUp text="Click anywhere to continue" closeFunc={() => this.changeQuestion(this.props.nick)} ref={this.popUp} />
       </div>
       </>
     )

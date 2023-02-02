@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import './popUp.css'
 
 class PopUp extends Component {
   constructor(props) {
@@ -25,22 +26,11 @@ class PopUp extends Component {
 
   render() {
     return this.state.opened ? (
-      <div style={popupStyle} onClick={() => this.close(this.props.closeFunc || null)}>
-        <h3>{this.props.text}</h3>
+      <div className='container' onClick={() => this.close(this.props.closeFunc || null)}>
+        <h3 className='text'>{this.props.text}</h3>
       </div>
     ) : null
   }
-}
-
-const popupStyle = {
-  textAlign: 'center',
-  backgroundColor: 'red',
-  position: 'fixed',
-  top: '50%',
-  left: '50%',
-  margintop: '-100px',
-  marginleft: '-150px',
-  zindex: 999
 }
 
 

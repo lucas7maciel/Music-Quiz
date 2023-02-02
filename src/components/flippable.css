@@ -11,6 +11,7 @@
 
 .front, .back {
   position: absolute;
+  z-index: 1;
   flex: 1;
   backface-visibility: hidden;
 }
