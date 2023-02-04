@@ -65,7 +65,7 @@ class Question extends Component {
     return (
       <>
       <div style={{textAlign:'center'}}>
-        <h1 onClick={() => this.changeQuestion()}>{this.state.question}</h1>
+        <h1 onClick={() => this.changeQuestion(this.props.nick)}>{this.state.question}</h1>
         <div style={containerStyle}>
           <Flippable 
           component={this.state.component1} 

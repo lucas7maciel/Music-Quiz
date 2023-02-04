@@ -4,6 +4,7 @@ import {lastfmKey} from '../functions/vars'
 class Song extends Component {
   constructor(props) {
     super(props)
+    console.log(this.props.res)
 
     this.coverUrl = this.props.res["image"][3]["#text"]
     this.name = this.props.res["name"]
@@ -20,6 +21,8 @@ class Song extends Component {
 
   async updateImage() {
     const data = this.props.res
+    console.log("Top track")
+    console.log(data)
     let newImage
 
     const artist = data["artist"]["name"].replaceAll(" ", "+")
@@ -29,6 +32,8 @@ class Song extends Component {
 
     await fetch(url).then((res) => res.json()).
     then((res) => {
+      console.log("Track info")
+      console.log(res)
       newImage = res["track"]["album"]["image"][3]["#text"]; 
     });
 
