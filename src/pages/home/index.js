@@ -29,19 +29,58 @@ const Home = () => {
 
   return (
     <>
-    <div className="container">
+    <div className="container" style={containerStyle}>
     <h1>Music Quiz</h1>
     <h2>Quiz based on your musical taste using Last.fm api</h2>
     <form>
-      <input type="text" value={nick} onChange={handleChange}></input>
+      <input type="text" value={nick} onChange={handleChange} style={inputStyle}></input>
       <p>{message}</p>
     </form>
     <div style={{textAlign: 'center', margin: '0 auto'}}>
-      <button style={{cursor: 'pointer'}} onClick={() => getStarted(nick)}>Get started!</button>
+      <button onClick={() => getStarted(nick)} style={buttonStyle}>Get started!</button>
     </div>
     </div>
     </>
   );
 }
+
+const containerStyle = {
+  textAlign: 'center'
+}
+
+const inputStyle = {
+  width: 500
+}
+
+const buttonStyle = {
+  color: 'white',
+  fontSize: 30,
+  fontWeight: 500,
+  padding: '12px 25px 12px 25px',
+  backgroundColor: 'purple',
+  border: '3px solid rgb(88, 0, 88)',
+  borderRadius: 4,
+  cursor: 'pointer'
+}
+
+/*.container {
+  text-align: center;
+}
+
+input {
+  width: 500px;
+}
+
+button {
+  color: white;
+  font-size: 30px;
+  font-weight: 500;
+  padding: 12px 25px 12px 25px;
+  background-color: purple;
+  border: 3px solid rgb(88, 0, 88);
+  border-radius: 4px;
+}
+*/
+
 
 export default Home

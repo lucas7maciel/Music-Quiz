@@ -26,26 +26,11 @@ class Artist extends Component {
   }
 }
 
-/*const Artist = ({res, index}) => {
-  res = res["topartists"]["artist"][index]
-
-  const coverUrl = res["image"][3]["#text"]
-  const name = res["name"]
-  console.log(`Playcount ${name}: ${res["playcount"]}`)
-  console.log(JSON.stringify(res))
-
-  return (
-    <>
-      <div style={artistStyle}>
-        <img src={coverUrl} onLoad={() => this.setState({imgLoaded: true})} alt="cover"></img>
-        <h2>{name}</h2>
-      </div>
-    </>
-  );
-}*/
-
 const artistStyle = {
   flex: 1,
+  maxWidth: 300,
+  border: 'solid',
+  backgroundColor: 'gray',
   textAlign:'center', 
   cursor: 'pointer'
 }

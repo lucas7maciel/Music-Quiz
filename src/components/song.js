@@ -54,6 +54,7 @@ class Song extends Component {
 
 const songStyle = {
   flex: 1,
+  maxWidth: 300,
   textAlign:'center',
   border: "solid",
   backgroundColor: 'gray',
