@@ -55,8 +55,7 @@ class Question extends Component {
     [this.flip1, this.flip2].forEach(async (ref) => {
       if (!ref.current.state.flipped) {
         await setTimeout(() => ref.current.flip(), 600)
-        await setTimeout(() => this.popUp.current.open(), 700)
-        //this.popUp.current.open()
+        await setTimeout(/*() => this.popUp.current.open()*/null, 700)
       }
     })
   }
@@ -94,7 +93,9 @@ const containerStyle = {
   justifyContent: 'center',
   alignItems: 'center',
   margin:'auto',
-  width: '55%'
+  width: '55%',
+  border: 'solid',
+  borderColor: 'green'
 }
 
 export default Question

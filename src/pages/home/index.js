@@ -1,7 +1,6 @@
 import {useNavigate} from 'react-router-dom'
-import { useState } from 'react'
 import { lastfmKey } from '../../functions/vars'
-import './style.css'
+import { useState } from 'react'
 
 const Home = () => {
   const navigate = useNavigate()
@@ -28,10 +27,9 @@ const Home = () => {
   }
 
   return (
-    <>
-    <div className="container" style={containerStyle}>
-    <h1>Music Quiz</h1>
-    <h2>Quiz based on your musical taste using Last.fm api</h2>
+    <div style={containerStyle}>
+    <h1 style={{border: 'solid', padding:0, margin:0}}>Music Quiz</h1>
+    <h2 style={{border:'solid'}}>Quiz based on your musical taste using Last.fm api</h2>
     <form>
       <input type="text" value={nick} onChange={handleChange} style={inputStyle}></input>
       <p>{message}</p>
@@ -40,11 +38,35 @@ const Home = () => {
       <button onClick={() => getStarted(nick)} style={buttonStyle}>Get started!</button>
     </div>
     </div>
-    </>
   );
 }
 
 const containerStyle = {
+  position: 'absolute',
+  top: -45,
+
+  border: 'solid',
+  width: '100%',
+  height: '100%',
+
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center'
+}
+
+const titleStyle = {
+
+}
+
+const inputStyle = {
+
+}
+
+const buttonStyle = {
+
+}
+/*const containerStyle = {
   textAlign: 'center'
 }
 
@@ -61,26 +83,6 @@ const buttonStyle = {
   border: '3px solid rgb(88, 0, 88)',
   borderRadius: 4,
   cursor: 'pointer'
-}
-
-/*.container {
-  text-align: center;
-}
-
-input {
-  width: 500px;
-}
-
-button {
-  color: white;
-  font-size: 30px;
-  font-weight: 500;
-  padding: 12px 25px 12px 25px;
-  background-color: purple;
-  border: 3px solid rgb(88, 0, 88);
-  border-radius: 4px;
-}
-*/
-
+}*/
 
 export default Home

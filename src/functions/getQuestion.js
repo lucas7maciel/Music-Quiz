@@ -3,7 +3,7 @@ import {questions} from "./vars"
 
 const getQuestionData = async (nick) => {
   const index = Math.floor(Math.random() * questions.length)
-  const question = questions[2]
+  const question = questions[index ]
 
   const components = await getComponents(nick, question["type"])
 

@@ -27,8 +27,8 @@ const getIndexes = (res) => {
   const index1 = Math.floor(Math.random() * res.length)
 
   //comentar isso
-  const min = index1 - 3
-  let max = index1 + 3
+  const min = index1 - 5
+  let max = index1 + 5
 
   if (max > res.length) max = res.length
 

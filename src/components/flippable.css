@@ -6,7 +6,8 @@
   position: relative;
   transform-style: preserve-3d;
   transform: perspective(1000px) rotateY(var(--rotate-y, 0));
-  transition: 550ms;
+  transition: 5500ms;
+  border: solid;
 }
 
 .front, .back {

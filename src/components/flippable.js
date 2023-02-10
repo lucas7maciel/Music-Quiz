@@ -66,7 +66,7 @@ class Flippable extends Component {
   }
 
   flip() {
-    this.setState({flipped: true})
+    this.setState({flipped: !this.state.flipped/*true*/})
   }
 
   render () {
