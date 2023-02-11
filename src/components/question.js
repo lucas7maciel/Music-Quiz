@@ -24,8 +24,8 @@ class Question extends Component {
     }
 
     this.state = {question: "Loading question...", first: true}
-    this.flipOther = this.flipOther.bind(this)
     this.popUp = createRef()
+    this.flipOther = this.flipOther.bind(this)
   }
 
   componentDidMount() {
@@ -55,35 +55,34 @@ class Question extends Component {
     [this.flip1, this.flip2].forEach(async (ref) => {
       if (!ref.current.state.flipped) {
         await setTimeout(() => ref.current.flip(), 600)
-        await setTimeout(/*() => this.popUp.current.open()*/null, 700)
+        await setTimeout(() => this.popUp.current.open(), 700)
       }
     })
   }
 
   render() {
     return (
-      <>
-      <div style={{textAlign:'center'}}>
+      <div style={{textAlign:'center', display: 'flex', justifyContent: 'center', flexDirection: 'column', height: '90%', border: 'solid 1px green'}}>
         <h1 onClick={() => this.changeQuestion(this.props.nick)} style={{marginBottom: 35}}>{this.state.question}</h1>
         <div style={containerStyle}>
           <Flippable 
-          component={this.state.component1} 
-          compRef={this.state.ref1} 
-          flipTrigger = {this.flipOther}
-          ref={this.flip1} 
-          key={this.state.key1 || 51}
+            component={this.state.component1} 
+            compRef={this.state.ref1} 
+            flipTrigger = {this.flipOther}
+            ref={this.flip1} 
+            key={this.state.key1 || 51}
           />
 
           <Flippable 
-          component={this.state.component2} 
-          compRef={this.state.ref2} 
-          flipTrigger = {this.flipOther}
-          ref={this.flip2} 
-          key={this.state.key2 || 52} />
+            component={this.state.component2} 
+            compRef={this.state.ref2} 
+            flipTrigger = {this.flipOther}
+            ref={this.flip2} 
+            key={this.state.key2 || 52}
+          />
         </div>
         <PopUp text="Click anywhere to continue" closeFunc={() => this.changeQuestion(this.props.nick)} ref={this.popUp} />
       </div>
-      </>
     )
   }
 }
@@ -94,8 +93,7 @@ const containerStyle = {
   alignItems: 'center',
   margin:'auto',
   width: '55%',
-  border: 'solid',
-  borderColor: 'green'
+  border: 'solid 5px white'
 }
 
 export default Question

@@ -13,6 +13,8 @@ const Home = () => {
   async function getStarted(nick) {
     if (nick.length === 0) return setMessage("Empty field")
 
+    setMessage("Checking user")
+
     //check if the user actually exists
     const url = `http://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=${nick}&api_key=${lastfmKey}&format=json` 
     let res
@@ -28,14 +30,14 @@ const Home = () => {
 
   return (
     <div style={containerStyle}>
-    <h1 style={{border: 'solid', padding:0, margin:0}}>Music Quiz</h1>
-    <h2 style={{border:'solid'}}>Quiz based on your musical taste using Last.fm api</h2>
-    <form>
+    <h1 style={titleStyle}>Music Quiz</h1>
+    <h2 style={{marginTop: 10}}>Questions based on your Last.fm scrobbles</h2>
+    <form style={{marginTop: 10}}>
       <input type="text" value={nick} onChange={handleChange} style={inputStyle}></input>
-      <p>{message}</p>
+      <p style={{textAlign: 'center', fontWeight: 'bold', color: '#292929'}}>{message}</p>
     </form>
     <div style={{textAlign: 'center', margin: '0 auto'}}>
-      <button onClick={() => getStarted(nick)} style={buttonStyle}>Get started!</button>
+      <button onClick={() => getStarted(nick)} style={buttonStyle}>Get Started</button>
     </div>
     </div>
   );
@@ -43,9 +45,8 @@ const Home = () => {
 
 const containerStyle = {
   position: 'absolute',
-  top: -45,
+  top: -25,
 
-  border: 'solid',
   width: '100%',
   height: '100%',
 
@@ -56,15 +57,26 @@ const containerStyle = {
 }
 
 const titleStyle = {
-
+  fontSize: '4em',
+  marginBottom: 0
 }
 
 const inputStyle = {
-
+  height: 30,
+  width: 400,
+  textAlign: 'center',
+  borderRadius: 5
 }
 
 const buttonStyle = {
-
+  backgroundColor: 'black',
+  marginTop: 10,
+  color: 'white',
+  cursor: 'pointer',
+  fontSize: '1.5em',
+  fontWeight: 'bold',
+  padding: "12px 23px 12px 23px",
+  borderRadius: 6
 }
 /*const containerStyle = {
   textAlign: 'center'

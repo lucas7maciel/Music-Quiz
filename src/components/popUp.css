@@ -11,14 +11,15 @@
   left: 0;
   right: 0;
   bottom: 0;
+  opacity: 0;
   animation: fading 1.5s ease-in forwards infinite alternate;
 }
 
 @keyframes fading {
   0% {
-    opacity: 1;
+    opacity: 0;
   }
   100% {
-    opacity: 0;
+    opacity: 1;
   }
 }

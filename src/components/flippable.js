@@ -66,12 +66,11 @@ class Flippable extends Component {
   }
 
   flip() {
-    this.setState({flipped: !this.state.flipped/*true*/})
+    this.setState({flipped: true})
   }
 
   render () {
     return (
-      <>
       <div className={`flippable ${this.state.flipped ? "flip" : ""}`} onClick={() => this.flip()}>
         <div className='front' ref={this.frontDiv}>
           {this.props.component}
@@ -81,7 +80,6 @@ class Flippable extends Component {
           <h3>{this.state.playCounts}</h3>
         </div>
       </div>
-      </>
     )
   }
 }

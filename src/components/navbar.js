@@ -7,10 +7,10 @@ const Navbar = () => {
   return (
     <>
       <div style={containerStyle}>
-        <img onClick={getBack} src="https://cdn-icons-png.flaticon.com/512/4999/4999606.png" style={homeStyle}></img>
+        <img onClick={getBack} src="https://cdn4.iconfinder.com/data/icons/pictype-free-vector-icons/16/home-512.png" alt="Home" style={iconStyle}></img>
         <h1 style={titleStyle}>Music Quiz</h1>
         <a href="https://github.com" target="_blank" rel="noreferrer">
-          <img src="https://cdn-icons-png.flaticon.com/512/2111/2111612.png" style={githubStyle}></img>
+          <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="Repository" style={iconStyle}></img>
         </a>
       </div>
     </>
@@ -37,20 +37,13 @@ const titleStyle = {
   flex: '80%'
 }
 
-const homeStyle = {
+const iconStyle = {
   flex: '10%',
   maxWidth: 60,
   maxHeight: 60,
 
-  cursor: 'pointer'
-}
-
-const githubStyle = {
-  flex: '10%',
-  maxWidth: 60,
-  maxHeight: 60,
-
-  cursor: 'pointer'
+  cursor: 'pointer',
+  filter: 'invert(100%)'
 }
 
 export default Navbar
