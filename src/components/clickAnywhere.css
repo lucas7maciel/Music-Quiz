@@ -1,16 +1,18 @@
-.popUp.container {
+.clickAny.container {
   position: absolute;
   top: 0;
   z-index: 2;
+
   width: 100%;
   height: 100%;
 }
 
-.popUp.text {
+.clickAny.text {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
+
   opacity: 0;
   animation: fading 1.5s ease-in forwards infinite alternate;
 }

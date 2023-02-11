@@ -1,30 +1,24 @@
 import {Component, createRef} from 'react'
-import getQuestionData from '../functions/getQuestion'
+import {getQuestionData} from '../functions/getQuestions'
+import ClickAnywhere from './clickAnywhere'
 import Flippable from './flippable'
-import PopUp from './popUp'
 
 class Question extends Component {
   constructor() {
     super()
 
-    //component 1
+    this.clickAny = createRef()
     this.flip1 = createRef()
-    this.state = {
-      component1: <h1>Loading</h1>,
-      ref1: null,
-      key1: null
-    }
-
-    //component 2
     this.flip2 = createRef()
+
     this.state = {
-      component2: <h1>Loading 2</h1>,
-      ref2: null,
-      key2: null
+      question:"Loading question...", first: true,
+      //components
+      component1: null, component2: null,
+      ref1: null, ref2: null,
+      key1: null, key2: null
     }
 
-    this.state = {question: "Loading question...", first: true}
-    this.popUp = createRef()
     this.flipOther = this.flipOther.bind(this)
   }
 
@@ -37,34 +31,35 @@ class Question extends Component {
 
   async changeQuestion(nick) {
     const newQuestion = await getQuestionData(nick)
-    
+
     this.setState({
       question: newQuestion.question,
 
       component1: newQuestion.component1,
-      ref1: newQuestion.ref1,
+      ref1: newQuestion.component1.ref,
       key1: newQuestion.component1.props.keyValue,
 
       component2: newQuestion.component2,
-      ref2: newQuestion.ref2,
+      ref2: newQuestion.component2.ref,
       key2: newQuestion.component2.props.keyValue
     })
   }
 
   flipOther() {
     [this.flip1, this.flip2].forEach(async (ref) => {
-      if (!ref.current.state.flipped) {
-        await setTimeout(() => ref.current.flip(), 600)
-        await setTimeout(() => this.popUp.current.open(), 700)
-      }
+      if (ref.current.state.flipped) return
+      
+      setTimeout(ref.current.flip, 600)
+      setTimeout(this.clickAny.current.pop, 700)
     })
   }
 
   render() {
     return (
-      <div style={{textAlign:'center', display: 'flex', justifyContent: 'center', flexDirection: 'column', height: '90%', border: 'solid 1px green'}}>
+      <div style={containerStyle}>
         <h1 onClick={() => this.changeQuestion(this.props.nick)} style={{marginBottom: 35}}>{this.state.question}</h1>
-        <div style={containerStyle}>
+
+        <div style={flippablesStyle}>
           <Flippable 
             component={this.state.component1} 
             compRef={this.state.ref1} 
@@ -81,19 +76,34 @@ class Question extends Component {
             key={this.state.key2 || 52}
           />
         </div>
-        <PopUp text="Click anywhere to continue" closeFunc={() => this.changeQuestion(this.props.nick)} ref={this.popUp} />
+        <ClickAnywhere 
+          text="Click anywhere to continue"
+          closeFunc={() => this.changeQuestion(this.props.nick)} 
+          ref={this.clickAny} 
+        />
       </div>
     )
   }
 }
 
 const containerStyle = {
+  display: 'flex', 
+  justifyContent: 'center', 
+  flexDirection: 'column', 
+  
+  marginTop: 40,
+  height: '90%',
+
+  textAlign: 'center'
+}
+
+const flippablesStyle = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  margin:'auto',
+
   width: '55%',
-  border: 'solid 5px white'
+  margin:'auto'
 }
 
 export default Question

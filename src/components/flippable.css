@@ -1,22 +1,21 @@
 
 .flippable {
   flex: 1;
-  border: solid 3px purple;
+
   display: flex;
   justify-content: center;
+
   transform-style: preserve-3d;
   transform: perspective(1000px) rotateY(var(--rotate-y, 0));
   transition: 550ms;
 }
 
 .front, .back {
-  position: absolute;
   flex: 1;
-  backface-visibility: hidden;
-}
 
-.front {
-  background-color: green;
+  position: absolute;
+
+  backface-visibility: hidden;
 }
 
 .back {
@@ -24,6 +23,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   background-color: brown;
   transform: rotateY(180deg);
 }

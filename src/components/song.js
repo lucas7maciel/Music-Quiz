@@ -4,7 +4,6 @@ import {lastfmKey} from '../functions/vars'
 class Song extends Component {
   constructor(props) {
     super(props)
-    console.log(this.props.res)
 
     this.coverUrl = this.props.res["image"][3]["#text"]
     this.name = this.props.res["name"]
@@ -21,24 +20,21 @@ class Song extends Component {
 
   async updateImage() {
     const data = this.props.res
-    console.log("Top track")
-    console.log(data)
-    let newImage
 
     const artist = data["artist"]["name"].replaceAll(" ", "+")
     const track = data["name"].replaceAll(" ", "+")
 
     const url = `http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${lastfmKey}&artist=${artist}&track=${track}&format=json`
 
-    await fetch(url).then((res) => res.json()).
-    then((res) => {
-      console.log("Track info")
-      console.log(res)
-      newImage = res["track"]["album"]["image"][3]["#text"]; 
+    await fetch(url)
+    .then((res) => res.json())
+    .then((res) => {
+      if (!res["track"]["album"]) return
+
+      this.coverUrl = res["track"]["album"]["image"][3]["#text"]; 
     });
 
     this.setState({rightImage: true})
-    this.coverUrl = newImage
   }
 
   render() {
@@ -54,10 +50,12 @@ class Song extends Component {
 
 const songStyle = {
   flex: 1,
+
   maxWidth: 300,
+
   textAlign:'center',
-  border: "solid",
   backgroundColor: 'gray',
+  border: "solid",
   cursor: 'pointer'
 }
 

@@ -13,9 +13,9 @@ class Album extends Component {
 
   render() {
     return (
-    <div className="album" style={{margin: 'auto'}} key={this.props.keyValue}>
+    <div className="album" key={this.props.keyValue}>
       <div style={albumStyle}>
-        <img src={this.coverUrl} onLoad={() => this.setState({imgLoaded: true})} style={{whiteSpace: 'initial'}} alt="cover"></img>
+        <img src={this.coverUrl} onLoad={() => this.setState({imgLoaded: true})} alt="cover"></img>
         <h2>{this.name}</h2>
         <h4>{this.artist}</h4>
       </div>
@@ -26,10 +26,12 @@ class Album extends Component {
 
 const albumStyle = {
   flex: 1,
+
   maxWidth: 300,
-  border: "solid",
-  backgroundColor: 'gray',
+
   textAlign:'center', 
+  backgroundColor: 'gray',
+  border: "solid",
   cursor: 'pointer'
 }
 

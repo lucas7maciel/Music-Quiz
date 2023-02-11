@@ -43,6 +43,8 @@ class Flippable extends Component {
 
   }
 
+  flip = () => this.setState({flipped: true})
+
   updateSize() {
     const frontRect = this.frontDiv.current.getBoundingClientRect()
     const backRect = this.backDiv.current.getBoundingClientRect()
@@ -65,13 +67,9 @@ class Flippable extends Component {
     })
   }
 
-  flip() {
-    this.setState({flipped: true})
-  }
-
   render () {
     return (
-      <div className={`flippable ${this.state.flipped ? "flip" : ""}`} onClick={() => this.flip()}>
+      <div className={`flippable ${this.state.flipped ? "flip" : ""}`} onClick={this.flip}>
         <div className='front' ref={this.frontDiv}>
           {this.props.component}
         </div>
