@@ -19,6 +19,7 @@ class Song extends Component {
   }
 
   async updateImage() {
+    //Last.fm api does not provide cover art for songs, so another request is made to collect cover art for your albums
     const data = this.props.res
 
     const artist = data["artist"]["name"].replaceAll(" ", "+")

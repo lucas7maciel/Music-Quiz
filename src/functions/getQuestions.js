@@ -21,12 +21,14 @@ const getComponents = async (nick, type) => {
 
   await fetch(url)
   .then((response) => response.json())
-  .then((data) => res = data);
+  .then((data) => res = data)
 
   res = helper["path"](res)
+
+  if (res.length <= 1) return [null, null]
   
-  const indexes = getIndexes(res)           //chooses two components for the question (albums, artists, songs)
-  const statuses = getStatus(res, indexes)  //checks which one has the highest play count
+  const indexes = getIndexes(res)           //chooses two random indexes based on a range
+  const statuses = getStatus(res, indexes)  //checks which item has the most playcounts
   const Component = helper.component
 
   const component1 = <Component res={res[indexes[0]]} status={statuses[0]} keyValue={indexes[0]} ref={createRef()} />
@@ -36,12 +38,11 @@ const getComponents = async (nick, type) => {
 }
 
 const getIndexes = (res) => {
-  const index1 = Math.floor(Math.random() * res.length - 1)
-  let index2 = index1 //temporarily
+  const index1 = Math.floor(Math.random() * res.length)
+  let index2 = index1
 
-  //comentar isso
   const range = 5
-  const max = Math.min(index1 + range, res.length - 1)
+  const max = Math.min(index1 + range, res.length)
   const min = Math.max(index1 - range, 0)
 
   while (index2 === index1) index2 = Math.floor(Math.random() * (max - min) + min)
@@ -58,5 +59,5 @@ const getStatus = (res, indexes) => {
   if (playcount1 === playcount2) return ["Tie", "Tie"]
 
   return [playcount1 > playcount2 ? "Winner" : "Loser",
-          playcount1 < playcount2 ? "Winner" : "Loser"]
+          playcount2 > playcount1 ? "Winner" : "Loser"]
 }

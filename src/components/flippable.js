@@ -40,7 +40,6 @@ class Flippable extends Component {
       this.updateInfo()
       this.setState({first: false})
     }
-
   }
 
   flip = () => this.setState({flipped: true})
@@ -58,7 +57,7 @@ class Flippable extends Component {
   updateInfo() {
     const contentData = this.props.component.props
   
-    const playCounts= contentData.res["playcount"]
+    const playCounts = contentData.res["playcount"]
     const newBgColor = bgColors[contentData.status]
 
     this.setState({

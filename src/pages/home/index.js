@@ -7,6 +7,7 @@ const Home = () => {
 
   const [message, setMessage] = useState("Enter your username")
   const [nick, setNick] = useState("")
+
   const handleChange = event => setNick(event.target.value)
 
   async function getStarted(nick) {
@@ -14,7 +15,7 @@ const Home = () => {
 
     setMessage("Checking user")
 
-    //check if the user actually exists
+    //checks if the user actually exists
     const url = `http://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=${nick}&api_key=${lastfmKey}&format=json` 
 
     await fetch(url)
@@ -24,8 +25,8 @@ const Home = () => {
 
       navigate("/feed", {state: {nick: nick}})
     })
-    .catch((error) => {
-      setMessage("Error")})
+    .catch(() => {
+      setMessage("Error when searching for user")})
   }
 
   return (

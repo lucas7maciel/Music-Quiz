@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import './clickAnywhere.css'
 
+//"Click anywhere to continue" component, which can be associated with any type of function, as they are passed as parameters
 class ClickAnywhere extends Component {
   constructor(props) {
     super(props)

@@ -10,7 +10,7 @@ export const questions =
  {text: "Which of these is your most listened to artist?", type: "Artist"},
  {text: "Which of these is your most listened to song?", type: "Song"}]
 
-//dictionary used in getComponents() to facilitate the use of methods for each type of component, summarizing everything in just one function
+//object used in getComponents() to facilitate the use of methods for each type of component, summarizing everything in just one function
 export const compHelper = {
   Album: {component: Album,
           method: "user.gettopalbums", 

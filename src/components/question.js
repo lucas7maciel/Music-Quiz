@@ -33,6 +33,8 @@ class Question extends Component {
   async changeQuestion(nick) {
     const newQuestion = await getQuestionData(nick)
 
+    //keys need to be checked so that their value is not repeated, otherwise new components will not be rendered
+    //the other chosen values are 51 and 52 which is the max response length + index of the component
     const key1 = newQuestion.component1.props.keyValue
     const key2 = newQuestion.component2.props.keyValue
 
@@ -47,11 +49,12 @@ class Question extends Component {
       ref2: newQuestion.component2.ref,
       key2: key2 === this.state.key2 ? 52 : key2
     })
+
   }
 
   flipOther() {
     [this.flip1, this.flip2].forEach((ref) => {
-      if (!ref.current || ref.current.state.flipped) return
+      if (ref.current.state.flipped) return
       
       setTimeout(ref.current.flip, 600)
       setTimeout(this.clickAny.current.pop, 700)
