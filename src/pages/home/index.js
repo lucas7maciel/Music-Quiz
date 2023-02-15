@@ -6,7 +6,7 @@ const Home = () => {
   const navigate = useNavigate()
 
   const [message, setMessage] = useState("Enter your username")
-  const [nick, setNick] = useState('lucascalcio')
+  const [nick, setNick] = useState("")
   const handleChange = event => setNick(event.target.value)
 
   async function getStarted(nick) {
@@ -16,26 +16,25 @@ const Home = () => {
 
     //check if the user actually exists
     const url = `http://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=${nick}&api_key=${lastfmKey}&format=json` 
-    let res
 
     await fetch(url)
-    .then((response) => response.json()).then((data) => res = data)
-    .catch(() => setMessage("Error"))
+    .then((res) => res.json())
+    .then((res) => {
+      if (res["message"]) return setMessage(res["message"])
 
-    if (res["message"]) return setMessage(res["message"])
-
-    navigate("/feed", {state: {nick: nick}})
+      navigate("/feed", {state: {nick: nick}})
+    })
+    .catch((error) => {
+      setMessage("Error")})
   }
 
   return (
     <div style={containerStyle}>
     <h1 style={titleStyle}>Music Quiz</h1>
     <h2 style={{marginTop: 10}}>Questions based on your Last.fm scrobbles</h2>
-    <form style={{marginTop: 10}}>
-      <input type="text" value={nick} onChange={handleChange} style={inputStyle}></input>
-      <p style={messageStyle}>{message}</p>
-    </form>
-    <div style={{textAlign: 'center', margin: '0 auto'}}>
+    <input type="text" value={nick} onChange={handleChange}  style={inputStyle}></input>
+    <p style={messageStyle}>{message}</p>
+    <div style={{textAlign: 'center'}}>
       <button onClick={() => getStarted(nick)} style={buttonStyle}>Get Started</button>
     </div>
     </div>

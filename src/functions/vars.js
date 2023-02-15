@@ -1,7 +1,6 @@
 import Album from '../components/album'
 import Artist from '../components/artist'
 import Song from '../components/song'
-import {createRef} from 'react'
 
 export const lastfmKey = '5c994f20a333e6a28901af6b8cc9929b'
 
@@ -13,15 +12,15 @@ export const questions =
 
 //dictionary used in getComponents() to facilitate the use of methods for each type of component, summarizing everything in just one function
 export const compHelper = {
-  Album: {component: (res, index, status) => <Album res={res[index]} status={status} keyValue={index} ref={createRef()} />,
+  Album: {component: Album,
           method: "user.gettopalbums", 
           path: (res) => res["topalbums"]["album"]},
 
-  Artist: {component: (res, index, status) => <Artist res={res[index]} status={status} keyValue={index} ref={createRef()} />, 
+  Artist: {component: Artist, 
            method: "user.gettopartists",
            path: (res) => res["topartists"]["artist"]},
 
-  Song: {component: (res, index, status) => <Song res={res[index]} status={status} keyValue={index} ref={createRef()} />,
+  Song: {component: Song,
          method: "user.gettoptracks",
          path: (res) => res["toptracks"]["track"]}
 }

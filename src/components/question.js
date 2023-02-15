@@ -16,7 +16,7 @@ class Question extends Component {
       //components
       component1: null, component2: null,
       ref1: null, ref2: null,
-      key1: null, key2: null
+      key1: 51, key2: 52
     }
 
     this.flipOther = this.flipOther.bind(this)
@@ -29,25 +29,29 @@ class Question extends Component {
     this.setState({first: false})
   }
 
+
   async changeQuestion(nick) {
     const newQuestion = await getQuestionData(nick)
+
+    const key1 = newQuestion.component1.props.keyValue
+    const key2 = newQuestion.component2.props.keyValue
 
     this.setState({
       question: newQuestion.question,
 
       component1: newQuestion.component1,
       ref1: newQuestion.component1.ref,
-      key1: newQuestion.component1.props.keyValue,
+      key1: key1 === this.state.key1 ? 51 : key1,
 
       component2: newQuestion.component2,
       ref2: newQuestion.component2.ref,
-      key2: newQuestion.component2.props.keyValue
+      key2: key2 === this.state.key2 ? 52 : key2
     })
   }
 
   flipOther() {
-    [this.flip1, this.flip2].forEach(async (ref) => {
-      if (ref.current.state.flipped) return
+    [this.flip1, this.flip2].forEach((ref) => {
+      if (!ref.current || ref.current.state.flipped) return
       
       setTimeout(ref.current.flip, 600)
       setTimeout(this.clickAny.current.pop, 700)
@@ -65,7 +69,7 @@ class Question extends Component {
             compRef={this.state.ref1} 
             flipTrigger = {this.flipOther}
             ref={this.flip1} 
-            key={this.state.key1 || 51}
+            key={this.state.key1}
           />
 
           <Flippable 
@@ -73,7 +77,7 @@ class Question extends Component {
             compRef={this.state.ref2} 
             flipTrigger = {this.flipOther}
             ref={this.flip2} 
-            key={this.state.key2 || 52}
+            key={this.state.key2}
           />
         </div>
         <ClickAnywhere 

@@ -1,3 +1,4 @@
+import { createRef } from 'react'
 import {lastfmKey, questions, compHelper} from './vars'
 
 export const getQuestionData = async (nick) => {
@@ -18,7 +19,9 @@ const getComponents = async (nick, type) => {
   const url = `http://ws.audioscrobbler.com/2.0/?method=${helper["method"]}&user=${nick}&api_key=${lastfmKey}&format=json`
   let res
 
-  await fetch(url).then((response) => response.json()).then((data) => res = data);
+  await fetch(url)
+  .then((response) => response.json())
+  .then((data) => res = data);
 
   res = helper["path"](res)
   
@@ -26,8 +29,8 @@ const getComponents = async (nick, type) => {
   const statuses = getStatus(res, indexes)  //checks which one has the highest play count
   const Component = helper.component
 
-  const component1 = Component(res, indexes[0], statuses[0])
-  const component2 = Component(res, indexes[1], statuses[1])
+  const component1 = <Component res={res[indexes[0]]} status={statuses[0]} keyValue={indexes[0]} ref={createRef()} />
+  const component2 = <Component res={res[indexes[1]]} status={statuses[1]} keyValue={indexes[1]} ref={createRef()} />
 
   return [component1, component2]
 }
